@@ -1,6 +1,6 @@
 ---
 resources:
-  - name: git-repo
+  - name: docker-images
     type: git
     source:
       uri: https://github.com/caraka/docker-images.git
