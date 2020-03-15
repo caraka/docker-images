@@ -1,6 +1,6 @@
 ---
 resources:
-  - name: docker-images
+  - name: git-repo
     type: git
     source:
       uri: https://github.com/caraka/docker-images.git
@@ -13,12 +13,13 @@ resources:
       username: ((docker-hub-username))
       password: ((docker-hub-password))
       repository: ((docker-hub-username))/httpd-py-cgi
+      tag: 2.4
 
 jobs:
-  - name: publish
+  - name: build-httpd-py-cgi
     public: true
     plan:
-      - get: docker-images
+      - get: git-repo
       - put: httpd-py-cgi
         params:
           build: docker-images/httpd-py-cgi/docker
