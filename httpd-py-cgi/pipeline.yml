@@ -1,0 +1,25 @@
+---
+resources:
+  - name: docker-images
+    type: git
+    source:
+      uri: https://github.com/caraka/docker-images.git
+      branch: master
+
+  - name: httpd-py-cgi
+    type: docker-image
+    source:
+      email: ((docker-hub-email))
+      username: ((docker-hub-username))
+      password: ((docker-hub-password))
+      repository: ((docker-hub-username))/httpd-py-cgi
+
+jobs:
+  - name: publish
+    public: true
+    plan:
+      - get: docker-images
+      - put: httpd-py-cgi
+        params:
+          build: docker-images/httpd-py-cgi/docker
+
