@@ -19,7 +19,7 @@ jobs:
   - name: build-httpd-py-cgi
     public: true
     plan:
-      - get: git-repo
+      - get: docker-images
       - put: httpd-py-cgi
         params:
           build: docker-images/httpd-py-cgi/docker
