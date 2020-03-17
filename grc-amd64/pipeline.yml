@@ -20,7 +20,7 @@ jobs:
     public: true
     plan:
       - get: docker-images
-      - put: grc-amd64
+      - put: grc-amd64-bionic
         params:
           build: docker-images/grc-amd64/grc-bionic
 
