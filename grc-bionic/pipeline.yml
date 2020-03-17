@@ -1,0 +1,26 @@
+---
+resources:
+  - name: docker-images
+    type: git
+    source:
+      uri: https://github.com/caraka/docker-images.git
+      branch: master
+
+  - name: grc-bionic
+    type: docker-image
+    source:
+      email: ((docker-hub-email))
+      username: ((docker-hub-username))
+      password: ((docker-hub-password))
+      repository: ((docker-hub-username))/grc-bionic
+      tag: amd64
+
+jobs:
+  - name: build-grc-bionic
+    public: true
+    plan:
+      - get: docker-images
+      - put: grc-bionic
+        params:
+          build: docker-images/grc-bionic/docker
+
