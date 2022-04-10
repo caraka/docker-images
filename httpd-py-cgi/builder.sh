@@ -4,8 +4,5 @@ set -euo pipefail
 
 docker login
 
-# build the image:
-docker build --no-cache --tag caraka/httpd-py-cgi:2.4 .
-
-# push the new version:
-docker push caraka/httpd-py-cgi:2.4
+docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
+--push -t caraka/httpd-py-cgi:2.4 .
